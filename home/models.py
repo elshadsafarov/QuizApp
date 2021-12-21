@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 import random
 
+
 class Quiz(models.Model):
     name = models.CharField(max_length=50)
-    desc = models.TextField(max_length=500)
+    desc = models.CharField(max_length=500)
     number_of_questions = models.IntegerField(default=1)
     time = models.IntegerField(help_text="Duration of the quiz in seconds", default="1")
 
@@ -34,12 +35,13 @@ class Answer(models.Model):
     def __str__(self):
         return f"question: {self.question.content}, answer: {self.content}, correct: {self.correct}"
 
-class Marks_Of_User(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.FloatField()
 
-    def __str__(self):
-        return str(self.quiz)
+# class Marks_Of_User(models.Model):
+#     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     score = models.FloatField()
+#
+#     def __str__(self):
+#         return str(self.quiz)
 
 

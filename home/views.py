@@ -4,14 +4,17 @@ from django.http import JsonResponse
 from .forms import QuizForm, QuestionForm
 from django.forms import inlineformset_factory
 
+
 def index(request):
     quiz = Quiz.objects.all()
     para = {'quiz' : quiz}
     return render(request, "index.html", para)
 
+
 def quiz(request, myid):
     quiz = Quiz.objects.get(id=myid)
     return render(request, "quiz.html", {'quiz':quiz})
+
 
 def quiz_data_view(request, myid):
     quiz = Quiz.objects.get(id=myid)
@@ -65,7 +68,7 @@ def save_quiz_view(request, myid):
             else:
                 marks.append({str(q): 'not answered'})
      
-        Marks_Of_User.objects.create(quiz=quiz, user=user, score=score)
+      # Marks_Of_User.objects.create(quiz=quiz, user=user, score=score)
         
         return JsonResponse({'passed': True, 'score': score, 'marks': marks})
 
